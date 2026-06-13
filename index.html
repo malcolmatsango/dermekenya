@@ -844,19 +844,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:4rem 2re
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast">Added to cart</div><script>function toggleMpesa(){var b=document.getElementById('mpesaBox');if(!b)return;var op=b.style.display==='none'||b.style.display==='';b.style.display=op?'block':'none';if(op){var t=document.getElementById('cartTotal');var a=document.getElementById('mpAmt');if(a)a.textContent=t?t.textContent.trim():'KES 0';}}function sendMpesaWhatsApp(){var nm=(document.getElementById('mpName').value||'').trim();var ph=(document.getElementById('mpPhone').value||'').trim();var ad=(document.getElementById('mpAddr').value||'').trim();if(!nm||!ph||!ad){alert('Please enter your name, phone and delivery address.');return;}var t=document.getElementById('cartTotal');var total=t?t.textContent.trim():'KES 0';var names=[].map.call(document.querySelectorAll('.cart-item-name'),function(n){return n.textContent.trim();});var prices=[].map.call(document.querySelectorAll('.cart-item-price'),function(n){return n.textContent.trim();});var items=names.map(function(x,i){return '- '+x+' ('+(prices[i]||'')+')';}).join('
-');var msg='New Derme Kenya order
-
-Items:
-'+items+'
-
-Total: '+total+'
-
-Name: '+nm+'
-Phone: '+ph+'
-Delivery: '+ad+'
-
-I have paid via M-Pesa to Paybill 600100 Acc 201008. Confirmation code: ____';window.open('https://wa.me/254705303042?text='+encodeURIComponent(msg),'_blank');}</script>
+<div class="toast" id="toast">Added to cart</div><script>function toggleMpesa(){var b=document.getElementById('mpesaBox');if(!b)return;var op=(b.style.display==='none'||b.style.display==='');b.style.display=op?'block':'none';if(op){var t=document.getElementById('cartTotal');var a=document.getElementById('mpAmt');if(a)a.textContent=t?t.textContent.trim():'KES 0';}}function sendMpesaWhatsApp(){var NL=String.fromCharCode(10);var nm=(document.getElementById('mpName').value||'').trim();var ph=(document.getElementById('mpPhone').value||'').trim();var ad=(document.getElementById('mpAddr').value||'').trim();if(!nm||!ph||!ad){alert('Please enter your name, phone and delivery address.');return;}var t=document.getElementById('cartTotal');var total=t?t.textContent.trim():'KES 0';var names=[].map.call(document.querySelectorAll('.cart-item-name'),function(n){return n.textContent.trim();});var prices=[].map.call(document.querySelectorAll('.cart-item-price'),function(n){return n.textContent.trim();});var items=names.map(function(x,i){return '- '+x+' ('+(prices[i]||'')+')';}).join(NL);var msg='New Derme Kenya order'+NL+NL+'Items:'+NL+items+NL+NL+'Total: '+total+NL+NL+'Name: '+nm+NL+'Phone: '+ph+NL+'Delivery: '+ad+NL+NL+'I have paid via M-Pesa to Paybill 600100 Acc 201008. Confirmation code: ____';window.open('https://wa.me/254705303042?text='+encodeURIComponent(msg),'_blank');}</script>
 
 <script>
 // PARTICLE CANVAS
