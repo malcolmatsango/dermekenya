@@ -838,13 +838,25 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:4rem 2re
       <span class="cart-total-label">Total</span>
       <span class="cart-total-amount" id="cartTotal">KES 0</span>
     </div>
-    <button class="btn-checkout" onclick="checkout()">Proceed to checkout →</button>
+    <button class="btn-checkout" onclick="checkout()">Proceed to checkout →</button><button onclick="toggleMpesa()" style="width:100%;background:#43A047;color:#fff;border:none;padding:1rem;border-radius:12px;font-size:0.95rem;font-weight:600;cursor:pointer;margin-top:0.6rem;font-family:var(--sans)">Pay via M-PESA</button><div id="mpesaBox" style="display:none;margin-top:0.85rem;padding:0.95rem;background:rgba(67,160,71,0.08);border:1px solid #43A047;border-radius:12px;font-size:0.82rem;color:var(--text-dim);line-height:1.5"><p style="margin:0 0 0.6rem">Send <strong id="mpAmt" style="color:#fff"></strong> to <strong style="color:#fff">Paybill 600100</strong>, Account <strong style="color:#fff">201008</strong>, then enter your delivery details below and tap the WhatsApp button — your order will be confirmed within 1 hour.</p><input id="mpName" placeholder="Full name" style="width:100%;margin-bottom:0.5rem;padding:0.6rem;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:#fff;font-family:var(--sans)"><input id="mpPhone" placeholder="Phone number" style="width:100%;margin-bottom:0.5rem;padding:0.6rem;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:#fff;font-family:var(--sans)"><input id="mpAddr" placeholder="Delivery address & town" style="width:100%;margin-bottom:0.5rem;padding:0.6rem;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:#fff;font-family:var(--sans)"><button onclick="sendMpesaWhatsApp()" style="width:100%;background:#25D366;color:#fff;border:none;padding:0.85rem;border-radius:10px;font-weight:600;cursor:pointer;font-family:var(--sans)">Send order details on WhatsApp →</button></div>
     <p class="mpesa-note">Pay via <span>M-Pesa</span>, Visa, or Mastercard</p>
   </div>
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast">Added to cart</div>
+<div class="toast" id="toast">Added to cart</div><script>function toggleMpesa(){var b=document.getElementById('mpesaBox');if(!b)return;var op=b.style.display==='none'||b.style.display==='';b.style.display=op?'block':'none';if(op){var t=document.getElementById('cartTotal');var a=document.getElementById('mpAmt');if(a)a.textContent=t?t.textContent.trim():'KES 0';}}function sendMpesaWhatsApp(){var nm=(document.getElementById('mpName').value||'').trim();var ph=(document.getElementById('mpPhone').value||'').trim();var ad=(document.getElementById('mpAddr').value||'').trim();if(!nm||!ph||!ad){alert('Please enter your name, phone and delivery address.');return;}var t=document.getElementById('cartTotal');var total=t?t.textContent.trim():'KES 0';var names=[].map.call(document.querySelectorAll('.cart-item-name'),function(n){return n.textContent.trim();});var prices=[].map.call(document.querySelectorAll('.cart-item-price'),function(n){return n.textContent.trim();});var items=names.map(function(x,i){return '- '+x+' ('+(prices[i]||'')+')';}).join('
+');var msg='New Derme Kenya order
+
+Items:
+'+items+'
+
+Total: '+total+'
+
+Name: '+nm+'
+Phone: '+ph+'
+Delivery: '+ad+'
+
+I have paid via M-Pesa to Paybill 600100 Acc 201008. Confirmation code: ____';window.open('https://wa.me/254705303042?text='+encodeURIComponent(msg),'_blank');}</script>
 
 <script>
 // PARTICLE CANVAS
